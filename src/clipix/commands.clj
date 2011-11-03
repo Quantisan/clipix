@@ -39,3 +39,20 @@
  (let [L-vert  (fn [t1 y]       ;; closure on x and c
                    (L t1 x y c))]
    (reduce L-vert t (range y1 (inc y2)))))
+
+(defn H
+" Draw a horizontal segment of colour C in row Y between columns X1 and X2
+(inclusive).
+"  
+  [t x1 x2 y c]
+   (let [L-hori  (fn [t1 x]       ;; closure on y and c
+                   (L t1 x y c))]
+   (reduce L-hori t (range x1 (inc x2)))))
+
+(defn F
+" Fill the region R with the colour C. R is defined as: Pixel (X,Y) belongs to R. Any other
+pixel which is the same colour as (X,Y) and shares a common side with any pixel in R also belongs
+to this region.
+"
+  [t x y c]
+  )

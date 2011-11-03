@@ -24,3 +24,7 @@
 (deftest V-test
   (is (= [[\O \A \O] [\O \A \O] [\O \A \O] [\O \O \O]]
          (V table0 2 1 3 "A"))))
+
+(deftest H-test
+  (is (= [[\O \O \O] [\O \O \O] [\O \O \O] [\O \A \A]]
+         (H table0 2 3 4 "A"))))
