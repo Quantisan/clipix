@@ -1,0 +1,6 @@
+(ns clipix.test.core
+  (:use [clipix.core])
+  (:use [clojure.test]))
+
+(deftest replace-me ;; FIXME: write
+  (is false "No tests have been written."))
