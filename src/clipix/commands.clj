@@ -36,6 +36,6 @@
   (inclusive).
 "
  [t x y1 y2 c]
- (let [L-vert  (fn [t y]       ;; closure on x and c
-                 (L t x y c))]
-   (reduce L-vert t (range (dec y1) y2))))
+ (let [L-vert  (fn [t1 y]       ;; closure on x and c
+                   (L t1 x y c))]
+   (reduce L-vert t (range y1 (inc y2)))))
