@@ -1,4 +1,5 @@
 (ns clipix.commands
+  (:use [clipix.model :only (put-cell select-fill)])
   (:require [clojure.string :as str]))
 
 (defn to-colour
@@ -25,11 +26,11 @@
 (defn L
 " Colours the pixel (X,Y) with colour C.
 "
-  [t x y c]
-  (let [x  (dec x)
-        y  (dec y)
-        c  (to-colour c)]
-    (assoc-in t [y x] c)))
+  ([t [x y] c]
+    (L t x y c))
+  ([t x y c]
+    (let [c  (to-colour c)]
+      (put-cell t x y c))))
 
 (defn V
 " Draw a vertical segment of colour C in column X between rows Y1 and Y2
@@ -55,4 +56,5 @@ pixel which is the same colour as (X,Y) and shares a common side with any pixel 
 to this region.
 "
   [t x y c]
-  )
+  (let [sames  (select-fill t x y)]
+    (reduce #(L %1 %2 c) t sames)))
