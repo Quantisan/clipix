@@ -19,7 +19,9 @@
 
 (deftest L-test
   (is (= [[\O \A \O] [\O \O \O] [\O \O \O] [\O \O \O]]
-         (L table0 2 1 "A"))))
+         (L table0 2 1 "A")))
+  (is (= [[\O \O \O] [\O \O \O] [\O \O \O] [\A \O \O]]
+         (L table0 [1 4] "A"))))
 
 (deftest V-test
   (is (= [[\O \A \O] [\O \A \O] [\O \A \O] [\O \O \O]]
@@ -28,3 +30,7 @@
 (deftest H-test
   (is (= [[\O \O \O] [\O \O \O] [\O \O \O] [\O \A \A]]
          (H table0 2 3 4 "A"))))
+
+(deftest S-test
+  (is (= "OOO\nOOO\nOOO\nOOO")
+      (S table0)))

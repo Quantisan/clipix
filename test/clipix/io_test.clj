@@ -3,5 +3,11 @@
   (:use [clojure.test]))
 
 (deftest parse-input-test
-  (is (= ["I" 2 3])
-      (parse-input "I 2 3")))
+  (is (= ["I" 2 10]
+         (parse-input "I 2 10")))
+  (is (= ["L" 1 2 "C"]
+         (parse-input "L 1 2 C"))))
+
+(deftest parse-ints-test
+  (is (= ["L" 1 2 "C"]
+         (parse-ints ["L" "1" "2" "C"]))))

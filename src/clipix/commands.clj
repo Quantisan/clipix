@@ -58,3 +58,12 @@ to this region.
   [t x y c]
   (let [sames  (select-fill t x y)]
     (reduce #(L %1 %2 c) t sames)))
+
+(defn S
+" Print and return the contents of the current image.
+"  
+  [t]
+  (let [joined-rows (map str/join t)
+        formatted   (str/join \newline joined-rows)]
+    (println formatted)   ;;;; side-effect ;;;;
+    formatted))
