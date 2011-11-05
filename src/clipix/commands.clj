@@ -1,5 +1,5 @@
 (ns clipix.commands
-  (:use [clipix.model :only (put-cell select-fill)])
+  (:use [clipix.model :only (put-cell flood-fill)])
   (:require [clojure.string :as str]))
 
 (defn to-colour
@@ -56,8 +56,8 @@ pixel which is the same colour as (X,Y) and shares a common side with any pixel 
 to this region.
 "
   [t x y c]
-  (let [sames  (select-fill t x y)]
-    (reduce #(L %1 %2 c) t sames)))
+  (let [c  (to-colour c)]
+    (flood-fill t x y c)))
 
 (defn S
 " Print and return the contents of the current image.

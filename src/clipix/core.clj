@@ -4,15 +4,25 @@
 
 (def image (atom []))
 
-(defn cont?
+(defn- cont?
   [s]
   (if (not= "X" s)
     s
     false))
 
-(defn call-transform! [[f & args]]
-  (when-let [fun  (resolve (symbol f))]
-    (apply swap! image fun args)))
+(defn- call! [f args]
+    (apply swap! image f args))
+
+(defn command!
+  [[f & args]]
+  (cond
+    (= "I" f) (call! I args)
+    (= "C" f) (call! C args)
+    (= "L" f) (call! L args)
+    (= "V" f) (call! V args)
+    (= "H" f) (call! H args)
+    (= "F" f) (call! F args)
+    (= "S" f) (call! S args)))
 
 (defn input 
   []
@@ -20,8 +30,7 @@
   (if-let [in (cont? (read-line))]
     (do
       (let [args  (parse-input in)]
-        (println @image) (flush)
-        (call-transform! args))
+        (command! args))
       (input))
     nil))
 

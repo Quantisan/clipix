@@ -31,23 +31,27 @@
         adjacents      (adjacents x y)]
     (filter #(is-colour? t % colour) adjacents)))
 
-(defn crawl-fill
-" Returns the immediate neighbours of (X,Y) with the same colour as (X,Y).
-"  
-  [t x y]
-  (loop [todo [[x y]]]
-    (while (seq todo)
-      (let [[x y]        (first todo)
-            match-sides  (matching-neighbours t x y)]
-      
-    
-    
-))))
-
 (defn select-fill
 " A list of neighbouring (x, y) which is the same colour as parameter (X,Y) 
   and shares a common side with any pixel in R also belongs to this region.
 "
   [t x y]
   (let [c  (get-cell t x y)]))
-  
+
+(def ^{:private true} buffer (atom []))
+
+(defn- crawl-fill
+  [[x y] old-c new-c]
+  (when (is-colour? @buffer x y old-c)    
+    (swap! buffer put-cell x y new-c)
+    (doseq [xy  (adjacents x y)]
+      (crawl-fill xy old-c new-c))))
+
+(defn flood-fill
+  [t x y c]
+  (let [old-c   (get-cell t x y)]
+    (do 
+      (reset! buffer t)
+      (crawl-fill [x y] old-c c)
+      @buffer)))
+

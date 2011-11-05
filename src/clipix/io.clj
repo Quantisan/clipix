@@ -8,7 +8,7 @@
       (cons (try 
               (Integer/parseInt x)
               (catch NumberFormatException e
-                x))
+                (str x)))
             (parse-ints more)))))
 
 (defn parse-input

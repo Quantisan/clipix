@@ -35,6 +35,10 @@
   (is (= [[3 2] [2 3] [1 2] [2 1]]
          (adjacents 2 2))))
 
+(deftest flood-fill-test
+  (is (= [[\A \B \B] [\A \B \B] [\B \B \C]]
+         (flood-fill table2 2 1 \B))))
+
 (deftest matching-neighbours-test
   (is (= [[1 2]]
          (matching-neighbours table2 1 1)))
