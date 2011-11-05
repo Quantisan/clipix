@@ -14,10 +14,6 @@
   (is (= table0
          (C table1))))
 
-(deftest to-colour-test
-  (is (= \A
-         (to-colour "A"))))
-
 (deftest L-test
   (is (= [[\O \A \O] [\O \O \O] [\O \O \O] [\O \O \O]]
          (L table0 2 1 "A")))

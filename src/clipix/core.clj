@@ -22,7 +22,7 @@
     (= "V" f) (call! V args)
     (= "H" f) (call! H args)
     (= "F" f) (call! F args)
-    (= "S" f) (call! S args)))
+    (= "S" f) (S @image)))  ;; special case
 
 (defn input 
   []
