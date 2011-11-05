@@ -5,6 +5,8 @@
 (def image (atom []))
 
 (defn- cont?
+" Returns false on 'X'
+"
   [s]
   (if (not= "X" s)
     s
@@ -14,6 +16,9 @@
     (apply swap! image f args))
 
 (defn command!
+" Assumption:
+  All input arguments are valid.
+"
   [[f & args]]
   (cond
     (= "I" f) (call! I args)
@@ -25,6 +30,8 @@
     (= "S" f) (S @image)))  ;; special case
 
 (defn input 
+" REPL loop
+"
   []
   (print "> ") (flush)
   (if-let [in (cont? (read-line))]
